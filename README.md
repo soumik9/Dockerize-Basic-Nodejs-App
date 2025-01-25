@@ -13,6 +13,14 @@ docker build -t image_name:tag_name .
 
 ---
 
+- To view all builded image, use the following command:
+
+```bash
+docker image ls
+```
+
+---
+
 - To build the Docker image, use the following command:
 
 ```bash
@@ -29,10 +37,50 @@ NB: Here after `:` the port is set to the application port & before `:` the port
 docker container ls
 ```
 
+```bash
+docker ps
+```
+
 ---
 
 - To stop a running container with the container ID:
 
 ```bash
 docker container stop first_3_digit_of_the_container
+```
+
+---
+
+- To delete a container with the container ID:
+
+```bash
+docker rm first_3_digit_of_the_container -f
+```
+
+NB: Here `-f` defines that delete the app forcefully.
+
+---
+
+- To delete a image with the image ID:
+
+```bash
+docker rmi first_3_digit_of_the_container -f
+```
+
+NB: Here `-f` defines that delete the app forcefully.
+
+---
+
+- To view file system of a app:
+
+```bash
+docker exec -it container_first_three_digit_id bash
+```
+
+---
+
+- To exit from file system of a app:
+
+```bash
+exit
 ```

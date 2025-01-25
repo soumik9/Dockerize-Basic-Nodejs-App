@@ -20,3 +20,4 @@ EXPOSE 8003
 
 # Start the app
 CMD ["yarn", "start"]
+# CMD ["yarn", "dev"]
