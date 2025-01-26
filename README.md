@@ -41,6 +41,10 @@ docker container ls
 docker ps
 ```
 
+```bash
+docker ps -a
+```
+
 ---
 
 - To stop a running container with the container ID:
@@ -83,4 +87,28 @@ docker exec -it container_first_three_digit_id bash
 
 ```bash
 exit
+```
+
+---
+
+- To sync files in docker with local file system when building the app:
+
+*: Windows Shell
+
+```bash
+docker container run -v %cd%:/app -d -p 8003:8003 image_name:tag_name
+```
+
+*: Windows PowerShell / MAC / Linux
+
+```bash
+docker container run -v ${pwd}/app -d -p 8003:8003 image_name:tag_name
+```
+
+NB: Here `%cd%` | `${pwd}` define the local directory path of the application. And, after `:` the `/app` define the docker `WORKDIR`. And, make sure you have installed nodemon for development purpose & don't forger to add `-L` flag on the command `"dev": "nodemon -L index.js"`. Here `-L` flag defines `--legacy-watch` because the file systems are different so it detect the file system event and when file changes triger the nodemon event.
+
+- To view the logs of a app:
+
+```bash
+docker logs container_first_three_digit_id
 ```

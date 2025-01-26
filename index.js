@@ -9,7 +9,7 @@ app.use(express.json());
 // Simple GET route
 app.get('/', (req, res) => {
     res.json({
-        message: 'Hello World!',
+        message: 'Hello World! Docker sync is working!',
     });
 });
 

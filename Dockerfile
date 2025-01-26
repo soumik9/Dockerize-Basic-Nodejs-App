@@ -18,6 +18,5 @@ COPY . .
 # Expose the app on port
 EXPOSE 8003
 
-# Start the app
-CMD ["yarn", "start"]
-# CMD ["yarn", "dev"]
+# Start the app with nodemon
+CMD ["yarn", "dev"]
