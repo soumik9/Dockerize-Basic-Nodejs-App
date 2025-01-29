@@ -107,6 +107,18 @@ docker container run -v ${pwd}/app -d -p 8003:8003 image_name:tag_name
 
 NB: Here `%cd%` | `${pwd}` define the local directory path of the application. And, after `:` the `/app` define the docker `WORKDIR`. And, make sure you have installed nodemon for development purpose & don't forger to add `-L` flag on the command `"dev": "nodemon -L index.js"`. Here `-L` flag defines `--legacy-watch` because the file systems are different so it detect the file system event and when file changes triger the nodemon event.
 
+---
+
+- After sync with above command, if you delete `node_modules` it also sync to docker container, to prevent `syncing` node_modules from local to docker app follow the command:
+
+```bash
+docker container run -v %cd%:/app -v /app/node_modules -d -p 8003:8003 image_name:tag_name
+```
+
+NB: `-v /app/node_modules` adding this it will create another volume & prevent syncing node_modules on the bind mount.
+
+---
+
 - To view the logs of a app:
 
 ```bash
