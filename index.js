@@ -1,7 +1,7 @@
 import express from 'express';
 
 const app = express();
-const port = 8003;
+const port = process.env.PORT || 8003;
 
 // Middleware to parse JSON requests
 app.use(express.json());
