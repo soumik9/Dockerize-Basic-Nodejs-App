@@ -25,6 +25,8 @@ docker container run -d -p 8003:8003 image_name:tag_name
 
 NB: Here after `:` the port is set to the application port & before `:` the port on which the application port will be forwarded.
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+
 - To view the list of running containers:
 
 ```bash
@@ -57,13 +59,33 @@ docker rm first_3_digit_of_the_container -f
 
 NB: Here `-f` defines that delete the app forcefully.
 
-- To delete a image with the image ID:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+
+- To delete a container with the volume:
 
 ```bash
-docker rmi first_3_digit_of_the_container -f
+docker rmi first_3_digit_of_the_container -fv
 ```
 
 NB: Here `-f` defines that delete the app forcefully.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+
+- To delete a image with the image ID:
+
+```bash
+docker rmi first_3_digit_of_the_image -f
+```
+
+NB: Here `-f` defines that delete the app forcefully.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+
+- To remove unused volumes:
+
+```bash
+docker volume prune
+```
 
 ---
 
@@ -93,6 +115,8 @@ exit
 docker container run -v %cd%:/app -d -p 8003:8003 image_name:tag_name
 ```
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 *: Windows PowerShell / MAC / Linux
 
 ```bash
@@ -119,6 +143,8 @@ NB: `-v /app/node_modules` adding this it will create another volume & prevent s
 docker logs container_first_three_digit_id
 ```
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+
 - To view what in .env, first open docker file system with `docker exec -it container_first_three_digit_id bash` then:
 
 ```bash
@@ -129,26 +155,38 @@ printenv
 
 ## Read Only Bind Mounts
 
-- To view the logs of a app:
+- To read only bind mounts:
 
 *: Windows PowerShell / MAC / Linux
 
 ```bash
-docker container run -v ${pwd}:/app:ro -d -p 8003:8003 image_name:tag_name
+docker container run -v ${pwd}:/app:ro -v /app/node_modules -d -p 8003:8003 image_name:tag_name
 ```
 
 ---
 
 ## Environment Variables in Docker
 
-- To view the logs of a app:
+- To run app with environment variables:
 
 *: Windows PowerShell / MAC / Linux
 
 ```bash
-docker container run -v ${pwd}:/app:ro -d -p 8003:8004 -e PORT=8004 image_name:tag_name
+docker container run -v ${pwd}:/app:ro -v /app/node_modules -d -p 8003:8004 -e PORT=8004 image_name:tag_name
 ```
 
-NB: Here, `-e` refer that `PORT` is a environtment variable.
+NB: Here, `-e` refer that `PORT` is a environtment variable which overwrite the environment.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+
+- To run app with multiple environment variables:
+
+*: Windows PowerShell / MAC / Linux
+
+```bash
+docker container run -v ${pwd}:/app:ro -v /app/node_modules -d -p 8003:8004 --env-file ./.env image_name:tag_name
+```
+
+NB: Create a `.env` file in root then declare what you want to. It will take multiple variables with a simple command.
 
 ---
